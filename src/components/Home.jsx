@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   BarChart,
@@ -18,22 +18,19 @@ const Home = () => {
   const { data, weeklyData, isLoading, isSuccess, isError, message } =
     useSelector((state) => state.solar);
 
-  // Get current date
+  // Get current date in 'dd-mm-yyyy' format
   const currentDate = new Date()
     .toLocaleDateString("en-GB")
     .replace(/\//g, "-");
 
+  // Get date range for the past week
   const getWeekDateRange = () => {
     const today = new Date();
     const startOfWeek = new Date(today);
     startOfWeek.setDate(today.getDate() - 7);
 
-    const endOfWeek = today;
-
-    const startDate = startOfWeek
-      .toLocaleDateString("en-GB")
-      .replace(/\//g, "-");
-    const endDate = endOfWeek.toLocaleDateString("en-GB").replace(/\//g, "-");
+    const startDate = startOfWeek.toLocaleDateString("en-GB").replace(/\//g, "-");
+    const endDate = today.toLocaleDateString("en-GB").replace(/\//g, "-");
 
     return { startDate, endDate };
   };
@@ -41,12 +38,12 @@ const Home = () => {
   const { startDate, endDate } = getWeekDateRange();
 
   useEffect(() => {
-    //  daily data
+    // Fetch daily data with dynamic date
     dispatch(solarDataGet(currentDate));
 
-    // weekly data
+    // Fetch weekly data
     dispatch(getWeeklyData({ startDate, endDate }));
-  }, [dispatch, currentDate, startDate, endDate]);
+  }, [dispatch, startDate, endDate]);
 
   if (isLoading) {
     return <div>Loading...</div>;
