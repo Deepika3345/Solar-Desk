@@ -1,0 +1,35 @@
+
+.heading {
+  font-weight: 900;
+  font-size: 30px;
+  color: #021947;
+}
+.form-area .login-button {
+  display: block;
+  width: 100%;
+  font-weight: bold;
+  background: linear-gradient(45deg, #021947 0%, #021947 100%);
+  color: white;
+  padding-block: 15px;
+  margin: 20px auto;
+  border-radius: 20px;
+  box-shadow: #021947 0px 20px 10px -15px;
+  border: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.form-area .login-button:hover {
+  transform: scale(1.03);
+  box-shadow: #021947 0px 23px 10px -20px;
+}
+
+.form-area .login-button:active {
+  transform: scale(0.95);
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 15px 10px -10px;
+}
+
+.signup {
+  display: block;
+  margin-top: 10px;
+  margin-left: 10px;
+}
